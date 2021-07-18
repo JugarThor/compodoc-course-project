@@ -1,0 +1,44 @@
+import { Routes, RouterModule } from "@angular/router";
+import { ModuleWithProviders } from "@angular/compiler/src/core";
+
+/**
+ * Rutas de la app
+ */
+const APP_ROUTES: Routes = [
+  {
+    path: "home",
+    loadChildren: () =>
+      import("./@pages/home/home.module").then((m) => m.HomeModule),
+  },
+  {
+    path: "about",
+    loadChildren: () =>
+      import("./@pages/about/about.module").then((m) => m.AboutModule),
+  },
+  {
+    path: "post",
+    loadChildren: () =>
+      import("./@pages/post/post.module").then((m) => m.PostModule),
+  },
+  {
+    path: "portfolio",
+    loadChildren: () =>
+      import("./@pages/portfolio/portfolio.module").then(
+        (m) => m.PortfolioModule
+      ),
+  },
+  {
+    path: "contact",
+    loadChildren: () =>
+      import("./@pages/contact/contact.module").then((m) => m.ContactModule),
+  },
+  { path: "**", pathMatch: "full", redirectTo: "home" },
+];
+
+/**
+ * exportador de las rutas de la app
+ */
+export const AppRoutingModule: ModuleWithProviders = RouterModule.forRoot(
+  APP_ROUTES,
+  { useHash: true }
+);
